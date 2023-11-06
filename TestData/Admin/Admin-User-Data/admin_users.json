@@ -1,0 +1,32 @@
+{
+    "Admin": {
+        "url": "https://uat-portal.efuelsystems.com",
+        "SuperUser": "ManjuSuperUser",
+        "Password": "DemoPass!CA1",
+        "companyCode": "TESTTEAM",
+        "firstName": "Admin01",
+        "userName": "manjuNG",
+        "email": "abcdfgh@gmail.com",
+        "lastName": "tester",
+        "country": "India",
+        "timeZone": "(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi(Asia/Kolkata)",
+        "userRegion" : "Region",
+        "userDivision" : "group",
+        "state" : "Karnataka",
+        "mobileNo" : "8473021317",
+        "position": "AutomationTester",
+        "postcode": "582207",
+        "subrub" : "svkbslv",
+        "nickName": "AutoTest",
+        "securityRole": "SuperUser",
+        "asset" : "Test 1",
+        "gender": "Male",
+        "passwordType": "Standard Password",
+        "manager" :"vikramsona123",
+        "companyRole" :"SuperUser Role",
+        "expectedMessage": "×User created successfully. An email with password reset URL has been sent to user.",
+        "userNamefilter": "manjuNG",
+        "firstNameFilter":"Admin01"
+        
+    }
+}
