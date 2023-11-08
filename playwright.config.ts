@@ -31,8 +31,10 @@ export default defineConfig({
     headless:false,
     trace: 'on-first-retry',
     screenshot:'only-on-failure',
+    geolocation: { longitude: 12.492507, latitude: 41.889938 },
+    permissions: ['geolocation'],
     //ignoreHTTPSErrors:true,
-    //permissions:['geolocation'],
+    // permissions:['geolocation'],
     video:'off',
   },
 

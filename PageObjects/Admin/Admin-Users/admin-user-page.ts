@@ -3,7 +3,6 @@ export default class AdminUsersPage {
     readonly page: Page;
     readonly addButtonLandLocator: Locator;
     readonly firstNameFiledLocator: Locator;
-    readonly userNameFiledLocator: Locator;
     readonly passwordTypeLocator: Locator;
     readonly lastNameFiledLocator: Locator;
     readonly addressFiledLocator: Locator;
@@ -25,7 +24,6 @@ export default class AdminUsersPage {
     readonly managereLocator: Locator;
     readonly companyRoleLocator: Locator;
     readonly confirmMessage: Locator;
-    readonly expectedUserName: string;
     readonly randomString: string;
     readonly userNameTextbox: Locator;
     readonly firstNameFilterLocator: Locator;
@@ -33,6 +31,14 @@ export default class AdminUsersPage {
     readonly selectUserCheckboxLocator: Locator;
     readonly deleteButtonLocator: Locator;
     readonly deleteAlertLocator: Locator;
+    readonly closeButtonLocator: Locator;
+    readonly expectedUpdatedUserName: string;
+    readonly expectedEmail: string;
+    readonly yesDeleteButton: Locator;
+    readonly deletePromptMessage: Locator;
+    readonly userNameDropdownInputField: Locator;
+    readonly expectedUserName: string;
+    readonly userNameFeildLocator: Locator;
 
 
 
@@ -42,7 +48,7 @@ export default class AdminUsersPage {
         this.addButtonLandLocator = page.locator('(//img[@alt="ctrlItem" ])[2]');
         //adding the admins
         this.firstNameFiledLocator = page.locator('//input[@name="Firstname"]');
-        this.userNameFiledLocator = page.locator('//input[@name="Username"]');
+        this.userNameFeildLocator = page.locator('//input[@name="Username"]');
         this.lastNameFiledLocator = page.locator('//input[@name="Lastname"]');
         this.addressFiledLocator = page.locator('//input[@name="Address1"]');
         this.emailAddressFiledLocator = page.locator('//input[@name="Email"]');
@@ -64,16 +70,24 @@ export default class AdminUsersPage {
         this.managereLocator = page.locator('//div[@data-test-id="UserManagementUserManagementUserDetails34AdminUserID"]');
         this.companyRoleLocator = page.locator('//div[@data-test-id="UserManagementUserManagementUserDetails34CompanyRoleId"]');
         this.confirmMessage = page.locator("//div[@role='alert']");
-        this.firstNameFilterLocator = page.locator('//th[@data-test-id="UserManagement283AdminUserDetailsFilterCellFirstName"]//input');
         this.userNameTextbox = page.locator("//div[@class='user-select__single-value css-1dimb5e-singleValue']");
-        this.expectedUserName = `${user}`;
         this.selectUserCheckboxLocator = page.locator('[data-test-id="UserManagement283AdminUserDetailsSelectionCellSelectionCell"]');
-        this.deleteButtonLocator = page.locator('[data-test-id="UserManagementCardWithToggleAndFunctionButtonsbtnDeleteButton"]');
-        this.deleteAlertLocator=page.locator('[data-test-id="UserManagementConfirmDeleteAlertButtonsButton0"]');
+        this.deleteButtonLocator = page.locator('[data-test-id="UserManagementUserManagementUserDetails34Delete"]');
+        this.deleteAlertLocator = page.locator('[data-test-id="UserManagementConfirmDeleteAlertButtonsButton0"]');
+        this.closeButtonLocator = page.locator('//span[@title="Close"]');
+        this.yesDeleteButton = page.locator('[data-test-id="UserManagementUserManagementUserDetailsDeleteAlertButtonsButton0"]');
+        this.deletePromptMessage = page.locator('div[data-test-id="UserManagementUserManagementUserDetailsDeleteAlert"] p');
+        this.userNameDropdownInputField = page.locator('[data-test-id="UserManagementUserName"] input');
+
+        this.randomString = `${Math.random().toString().slice(2, 5)}`;
+        this.expectedUserName = `${user}${this.randomString}${'vtest'}`;
+        this.expectedEmail = `${user}${this.randomString}${'@gmail.com'}`;
 
 
     }
 
+
+    //----------add the user-------------------------------------
     async clickOnAddButtonLandPage() {
         await this.addButtonLandLocator.click();
     }
@@ -84,13 +98,14 @@ export default class AdminUsersPage {
 
     }
 
+    async addUserName(userName: string) {
+        await this.userNameFeildLocator.fill(this.expectedUserName);
+    }
+
     async addFirstName(firstName: string) {
         await this.firstNameFiledLocator.fill(firstName);
     }
 
-    async addUserName(userName: string) {
-        await this.userNameFiledLocator.fill(userName);
-    }
     async addLastName(lastName: string) {
         await this.lastNameFiledLocator.fill(lastName);
     }
@@ -99,7 +114,7 @@ export default class AdminUsersPage {
         await this.addButtonLandLocator.fill(address);
     }
     async addEmailAddess(email: string) {
-        await this.emailAddressFiledLocator.fill(email);
+        await this.emailAddressFiledLocator.fill(this.expectedEmail);
     }
     async addMobileNumer(mobileNo: string) {
         await this.mobileNumberFiledLocator.type(mobileNo);
@@ -160,7 +175,7 @@ export default class AdminUsersPage {
     async clickOnSaveButton() {
         await this.saveButtonLocator.click();
     }
-
+//------------verify user is created------------------------------------------------
     async verifyConfirmationMessage(expectedMessage: string) {
         const actualMessage = await this.confirmMessage.textContent();
         expect(actualMessage?.trim()).toBe(expectedMessage);
@@ -174,19 +189,40 @@ export default class AdminUsersPage {
 
     //-----------------------------------------------
 
-    async serachUserForFilter(firstNameFilter: string) {
-        await this.firstNameFilterLocator.fill(firstNameFilter);
+    async serachUserForFilter(userNameFilter: string) {
+        await this.page.waitForLoadState('load');
+        await this.firstNameFilterLocator.fill(userNameFilter);
         await this.selectUserCheckboxLocator.click();
     }
-
+//--------------delete the user--------------------------------------------
     async clickOnDeleteButton() {
         await this.deleteButtonLocator.click();
-        await this.page.waitForLoadState("load");
-        await this.deleteAlertLocator.click();
+        // await this.page.waitForLoadState("load");
+        // await this.deleteAlertLocator.click();
+    }
+//------------verify user deleted or not------------------------------
+    async verifyUserCanBeDeleted() {
+        expect(this.yesDeleteButton).toBeVisible();
 
     }
 
+    async verifyDeletePrompt(expectedMessage: string) {
+        const actualDeletePromptMessage = await this.deletePromptMessage.textContent();
+        expect(actualDeletePromptMessage).toBe(expectedMessage);
+        await this.yesDeleteButton.click();
+    }
+    async clickOnCloseButton() {
+        await this.page.waitForLoadState("domcontentloaded");
+        await this.closeButtonLocator.click();
+    }
 
+//-------------------------verify user is exist -------------------------------------------
+    async verifyIfUserCouldBeSearched(userName: string) {
+        await this.userNameDropdownInputField.fill(this.expectedUserName.toLowerCase());
+        expect(this.page.locator("(//div[normalize-space()='" + this.expectedUserName.toLowerCase() + "'])[1]")).toBeVisible();
+    }
 
 
 }
+
+
