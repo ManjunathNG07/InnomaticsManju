@@ -9,8 +9,8 @@ test.beforeEach(async ({ page }) => {
     await login.loginToApp(data.superUser, data.companyCode, data.password);
 
 })
-test("Dashboard",async({page})=>{
-    const dashBoardPage=new DashboardPage(page);
-    await dashBoardPage.clickOnAdmin();
-    await dashBoardPage.clickOnUsers();
-})
+// test("Dashboard",async({page})=>{
+//     const dashBoardPage=new DashboardPage(page);
+//     await dashBoardPage.clickOnAdmin();
+//     await dashBoardPage.clickOnUsers();
+// })

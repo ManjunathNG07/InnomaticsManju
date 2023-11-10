@@ -6,21 +6,37 @@ export default class DashboardPage {
     readonly page: Page;
     readonly adminLocator: Locator;
     readonly usersButtonLocator: Locator;
+    readonly stocksLocator: Locator;
+    readonly stockSettingsLocator: Locator;
 
     constructor(page: Page) {
         this.page = page;
         //admin
         this.adminLocator = page.locator("//p[.='Admin']");
         //users
-        this.usersButtonLocator=page.locator("//span[.='Users']");
+        this.usersButtonLocator = page.locator("//span[.='Users']");
+        //stock
+        this.stocksLocator = page.locator("//p[.='Stock']");
+        //stock-settings
+        this.stockSettingsLocator = page.locator("(//span[.='Settings'])[3]");
     }
-    async clickOnAdmin(){
+    //------admin---------------------------------------------
+    async clickOnAdmin() {
         await this.page.waitForLoadState("load");
         await this.adminLocator.click();
     }
 
-    async clickOnUsers(){
+    async clickOnUsers() {
         await this.page.waitForLoadState("load");
         await this.usersButtonLocator.click();
+    }
+    //-----stock-----------------------------------------------
+    async clickOnStock() {
+        await this.page.waitForLoadState("load");
+        await this.stocksLocator.click();
+    }
+    async clickOnStockSettings() {
+        await this.page.waitForLoadState("load");
+        await this.stockSettingsLocator.click();
     }
 }
