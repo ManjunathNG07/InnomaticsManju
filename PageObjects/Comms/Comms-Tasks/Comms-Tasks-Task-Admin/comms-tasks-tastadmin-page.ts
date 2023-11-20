@@ -11,9 +11,11 @@ export default class CommsTaskAdminPage {
     readonly dueTimeLocator: Locator;
     readonly siteNameLocator: Locator;
     readonly enableAndTaskSummaryLocator: Locator;
-    dueDateTextLocator: Locator;
-    dueDateLocator: Locator;
-    dueDateyearTextLocator: Locator;
+    readonly dueDateTextLocator: Locator;
+    readonly dueDateLocator: Locator;
+    readonly dueDateyearTextLocator: Locator;
+    readonly dueDateYearLocator: Locator;
+
 
 
 
@@ -32,7 +34,10 @@ export default class CommsTaskAdminPage {
         this.dueDateLocator = page.locator('//div[@data-test-id="TaskAdminAddEditTaskTaskDetailsTabTaskDetailsFormDueDate"]//input');
         this.dueDateTextLocator = page.locator("(//span[.='›'])[4]");
         this.dueDateyearTextLocator = page.locator('(//th[@class="rdtSwitch"])[4]');
-       
+        this.dueDateYearLocator = page.locator('(//th[@class="rdtSwitch"])[4]');
+
+
+
 
     }
 
@@ -50,39 +55,55 @@ export default class CommsTaskAdminPage {
         await this.commsTaskLocator.click();
     }
     async enterTaskName(taskName: string) {
-        await this.page.waitForTimeout(4000);
+        await this.page.waitForTimeout(2000);
         await this.taskNameLocator.fill(taskName);
     }
 
     async selectUrgency(urgency: string) {
         await this.urgencyDropDownLocator.fill(urgency);
-        await this.page.locator('//div[contains(text(),"' + urgency + '")]').first().click();
+        await this.page.locator('//div[normalize-space()="' + urgency + '"]').last().click();
     }
 
-    async setDueDate(date:string,monthYear:string,month:string) {
-      
+    async setDueDate(date: string, monthYear: string, month: string, year: string, monthss: string) {
+        await this.page.waitForLoadState('domcontentloaded');
         await this.dueDateLocator.click();
-        
-        while (true){
-         const inneryear= await this.dueDateyearTextLocator.textContent();
-        
-           if(inneryear == monthYear )
-           {
-            break;
-           }
-          await this.dueDateTextLocator.click();
-          
+
+        while (true) {
+            const inneryear = await this.dueDateyearTextLocator.textContent();
+
+            if (inneryear == monthYear) {
+                break;
+            }
+            await this.dueDateyearTextLocator.click();
+            await this.dueDateYearLocator.click();
+            await this.dueDateTextLocator.click();
+            const years = await this.page.$$('(//td[@class="rdtYear" and @data-value="' + year + '"])');
+            for (const yr of years) {
+                if (await yr.textContent() == year) {
+                    await yr.click();
+                    break;
+                }
+                await this.dueDateTextLocator.click();
+            }
+            const months = await this.page.$$('//td[@class="rdtMonth"]');
+            for (const mh of months) {
+                if (await mh.textContent() == monthss) {
+                    await mh.click();
+                    break;
+                }
+            }
+
+
         }
-        const dates=await this.page.$$('//td[@class="rdtDay" and @data-month="'+month+'"]');
-        for(const dt of dates){
-       if(await dt.textContent()==date)
-       {
-           await dt.click();
-           break;
-       }
+        const dates = await this.page.$$('//td[@class="rdtDay" and @data-month="' + month + '"]');
+        for (const dt of dates) {
+            if (await dt.textContent() == date) {
+                await dt.click();
+                break;
+            }
         }
     }
-    
+
 
     async setDueTime(duetime: string) {
         await this.dueTimeLocator.fill(duetime);
@@ -106,8 +127,8 @@ export default class CommsTaskAdminPage {
         await this.nextButton1Locator.click();
     }
 
-    async verifyEnableAndSaveTask(){
-        await expect( this.enableAndTaskSummaryLocator).toBeVisible();
+    async verifyEnableAndSaveTask() {
+        await expect(this.enableAndTaskSummaryLocator).toBeVisible();
         await this.enableAndTaskSummaryLocator.click();
     }
 }
