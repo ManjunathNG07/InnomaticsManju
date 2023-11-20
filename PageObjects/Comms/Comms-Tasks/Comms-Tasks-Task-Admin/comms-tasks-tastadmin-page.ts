@@ -76,7 +76,6 @@ export default class CommsTaskAdminPage {
             }
             await this.dueDateyearTextLocator.click();
             await this.dueDateYearLocator.click();
-            await this.dueDateTextLocator.click();
             const years = await this.page.$$('(//td[@class="rdtYear" and @data-value="' + year + '"])');
             for (const yr of years) {
                 if (await yr.textContent() == year) {
@@ -84,6 +83,7 @@ export default class CommsTaskAdminPage {
                     break;
                 }
                 await this.dueDateTextLocator.click();
+                break;
             }
             const months = await this.page.$$('//td[@class="rdtMonth"]');
             for (const mh of months) {
