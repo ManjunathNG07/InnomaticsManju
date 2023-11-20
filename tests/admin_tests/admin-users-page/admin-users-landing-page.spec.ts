@@ -12,6 +12,7 @@ test("Verify that LIU should be able to add new users details by clicking + icon
     const adminUserPage = new AdminUsersPage(page, data["Admin"].userName);
     await login.gotoLoginPage(data["Admin"].url);
     await login.loginToApp(data["Admin"].SuperUser, data["Admin"].companyCode, data["Admin"].Password);
+    await login.clickOnAllowCookies();
     await dashBoardPage.clickOnAdmin();
     await dashBoardPage.clickOnUsers();
     await adminUserPage.clickOnAddButtonLandPage();

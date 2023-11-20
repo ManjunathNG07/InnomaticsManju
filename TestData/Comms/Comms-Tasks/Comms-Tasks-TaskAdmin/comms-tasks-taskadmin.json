@@ -1,0 +1,14 @@
+{
+    "url": "https://uat-portal.efuelsystems.com",
+    "SuperUser": "ManjuSuperUser",
+    "Password": "DemoPass!CA1",
+    "companyCode": "TESTTEAM",
+    "taskName": "autotest",
+    "urgency": "test",
+    "duetime": "450",
+    "siteName": "MySite",
+    "form": "Form27",
+    "monthYear":"December 2023",
+    "date":"28",
+    "month":"11"
+}

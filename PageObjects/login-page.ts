@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { expect, FrameLocator, Locator, Page } from "@playwright/test";
 export default class Loginpage {
     readonly page: Page;
     readonly userNameLocator: Locator;
@@ -6,7 +6,8 @@ export default class Loginpage {
     readonly passwordLocator: Locator;
     readonly rememberMeLocator: Locator;
     readonly loginButtonLocator: Locator;
-    readonly forgotPasswordButton: Locator;
+   readonly frameLocator: any;
+ 
 
     constructor(page: Page) {
         this.page = page;
@@ -15,11 +16,12 @@ export default class Loginpage {
         this.passwordLocator = page.locator('//input[@name="password"]');
         this.rememberMeLocator = page.locator("//label[.='Remember me']");
         this.loginButtonLocator = page.locator('#LoginButton');
+        this.frameLocator=  page.frame({url:'https://uat-portal.efuelsystems.com/home/dashboard'});
 
 
     }
 
-    async gotoLoginPage(url:string){
+    async gotoLoginPage(url: string) {
         await this.page.goto(url);
         this.page.waitForLoadState("domcontentloaded");
     }
@@ -30,5 +32,10 @@ export default class Loginpage {
         await this.rememberMeLocator.click();
         await this.loginButtonLocator.click();
         this.page.waitForLoadState("load");
+    }
+
+    async clickOnAllowCookies() {
+        const frame1=await this.frameLocator;
+        await this.page.getByRole('button', { name: 'Accept All' }).click();    
     }
 }

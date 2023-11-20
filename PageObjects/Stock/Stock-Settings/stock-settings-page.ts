@@ -89,8 +89,6 @@ export default class StockSettingsPage {
     }
 
     async enterSiteName(siteName: string) {
-       // await this.siteNameLocator.last().click();
-       
         await this.siteNameDropdownLocator.fill(siteName);
         await this.page.locator('//div[contains(text(),"' + siteName + '")]').first().click();
        
