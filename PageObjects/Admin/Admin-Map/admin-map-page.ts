@@ -5,8 +5,8 @@ export default class AdminMapPage {
     readonly zoomInIconLocator: Locator;
     readonly shrinkButtonLocator: Locator;
     readonly expondButtonLocator: Locator;
-    mapTabLocator: Locator;
-    alertOkButtonLocator: Locator;
+    readonly mapTabLocator: Locator;
+    readonly alertOkButtonLocator: Locator;
 
 
 
@@ -19,8 +19,8 @@ export default class AdminMapPage {
         this.zoomInIconLocator = page.locator('[title="Zoom in"]');
         this.shrinkButtonLocator = page.locator(' [data-test-id="UserManagementUserManagementMap218CardWithToggleButtonShrink"]');
         this.expondButtonLocator = page.locator('[data-test-id="UserManagementUserManagementMap218CardWithToggleButtonExpand"]');
-        this.mapTabLocator=page.locator('[data-test-id="UserManagement1237"]');
-        this.alertOkButtonLocator=page.locator("//a[.='Ok']");
+        this.mapTabLocator = page.locator('[data-test-id="UserManagement1237"]');
+        this.alertOkButtonLocator = page.locator("//a[.='Ok']");
 
     }
     async clickOnMapTab() {
