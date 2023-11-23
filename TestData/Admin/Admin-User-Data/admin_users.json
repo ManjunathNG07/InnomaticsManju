@@ -91,5 +91,27 @@
         "firstNameFilter":"Admin"
        
         
+    },
+
+    "Admin3": {
+        "url": "https://uat-portal.efuelsystems.com",
+        "SuperUser": "ManjuSuperUser",
+        "Password": "DemoPass!CA1",
+        "companyCode": "TESTTEAM",
+        "userName": "hello",
+        "userNameDropdown": "manju71vtest",
+        "welcomeMailConfirmMessage": "A welcome email has been sent to user."
+    },
+
+    "Admin6": {
+        "url": "https://uat-portal.efuelsystems.com",
+        "SuperUser": "ManjuSuperUser",
+        "Password": "DemoPass!CA1",
+        "companyCode": "TESTTEAM",
+        "userName": "hello",
+        "securityRole": "Admin"
+      
     }
+
+
 }

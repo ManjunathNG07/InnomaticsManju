@@ -9,6 +9,13 @@ export default class DashboardPage {
     readonly stocksLocator: Locator;
     readonly stockSettingsLocator: Locator;
     readonly commsLocator: Locator;
+    assetsLocator: Locator;
+    setupLocator: Locator;
+    companySettingsButtonLocator: Locator;
+    preferencesLocator: Locator;
+    maplocator: Locator;
+    availabilityLocator: Locator;
+    managedUserLocator: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -16,12 +23,30 @@ export default class DashboardPage {
         this.adminLocator = page.locator("//p[.='Admin']");
         //users
         this.usersButtonLocator = page.locator("//span[.='Users']");
+        //company Settings
+        this.companySettingsButtonLocator = page.locator("//span[.='Company Settings']");
         //stock
         this.stocksLocator = page.locator("//p[.='Stock']");
         //stock-settings
         this.stockSettingsLocator = page.locator("(//span[.='Settings'])[3]");
         //comms
         this.commsLocator = page.locator("//p[.='Comms']");
+        //Assets
+        this.assetsLocator = page.locator("//p[.='Assets']");
+        this.setupLocator = page.locator("(//span[.='Setup'])[3]");
+        //preferences
+        this.preferencesLocator = page.locator("(//div[.='Preferences'])[2]");
+        //map
+        this.maplocator=page.locator("(//div[.='Map'])[2]");
+        //Availability
+        this.availabilityLocator=page.locator("(//div[.='Availability'])[2]");
+        //managed user
+        this.managedUserLocator=page.locator("(//div[.='ManagedUsers'])[2]");
+        
+
+        
+
+
     }
     //------admin---------------------------------------------
     async clickOnAdmin() {
@@ -46,6 +71,41 @@ export default class DashboardPage {
     async clickOnComms() {
         await this.page.waitForLoadState("load");
         await this.commsLocator.click();
+    }
+    //--------------------------assets-----------------
+    async clickOnAssets() {
+        await this.page.waitForLoadState("load");
+        await this.assetsLocator.click();
+    }
+
+    async clickOnAssetsSetup() {
+        await this.page.waitForLoadState("load");
+        await this.setupLocator.click();
+    }
+    //-----------------company settings----------
+    async clickOnCompanySettings() {
+        await this.page.waitForLoadState("load");
+        await this.companySettingsButtonLocator.click();
+    }
+    //--------------preferences-----------------
+    async clickOnPreferences() {
+        await this.page.waitForLoadState("load");
+        await this.preferencesLocator.click();
+    }
+    //-----------------Map---------------
+    async clickOnMap() {
+        await this.page.waitForLoadState("load");
+        await this.maplocator.click();
+    }
+    //------------------availability---------
+    async clickOnAvailability() {
+        await this.page.waitForLoadState("load");
+        await this.availabilityLocator.click();
+    }
+    //------------Managed User----------
+    async clickOnManagedUser() {
+        await this.page.waitForLoadState("load");
+        await this.managedUserLocator.click();
     }
 
 }

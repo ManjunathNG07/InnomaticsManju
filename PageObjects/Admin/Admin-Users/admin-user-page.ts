@@ -40,6 +40,16 @@ export default class AdminUsersPage {
     readonly expectedUserName: string;
     readonly userNameFeildLocator: Locator;
 
+    readonly firstNameMandatoryAlertLocator: Locator;
+    readonly userDetailsCloseLocator: Locator;
+    readonly userVerifyLocator: Locator;
+    readonly userNameDropdownLoactor: Locator;
+    readonly welcomeButtonLocator: Locator;
+    readonly welcomeMailConfirmMessage: Locator;
+    readonly companyRoleDropdownButtonLocator: Locator;
+    readonly securityRoleInputLocator: Locator;
+    readonly resetPasswordLocator: Locator;
+
 
 
     constructor(page: Page, user: string) {
@@ -78,6 +88,17 @@ export default class AdminUsersPage {
         this.yesDeleteButton = page.locator('[data-test-id="UserManagementUserManagementUserDetailsDeleteAlertButtonsButton0"]');
         this.deletePromptMessage = page.locator('div[data-test-id="UserManagementUserManagementUserDetailsDeleteAlert"] p');
         this.userNameDropdownInputField = page.locator('[data-test-id="UserManagementUserName"] input');
+        //----------------------------
+        this.firstNameMandatoryAlertLocator = page.locator('(//div[@class="invalid-feedback"])[2]');
+        this.userDetailsCloseLocator = page.locator('[data-test-id="UserManagementUserManagementUserDetails34CancelCustomHoverButton"]');
+        this.userVerifyLocator = page.locator('//h5[@data-test-id="UserManagementCardWithToggleAndFunctionButtonsTitle"]');
+        this.userNameDropdownLoactor = page.locator('[data-test-id="UserManagementUserName"] input');
+        this.welcomeButtonLocator = page.locator('[data-test-id="UserManagementUserManagementUserDetails34btnWelcomeCustomButton"]');
+        this.resetPasswordLocator = page.locator('[data-test-id="UserManagementUserManagementUserDetails34btnResetPasswordCustomButton2"]');
+        this.welcomeMailConfirmMessage = page.locator('//div[@role="alert"]');
+        this.companyRoleDropdownButtonLocator = page.locator('[data-test-id="UserManagementUserManagementUserDetails34CompanyRoleId"] [class=" css-uib1fa-indicatorContainer"]');
+        this.securityRoleInputLocator = page.locator('(//div[@data-test-id="UserManagementUserManagementUserDetails34Role"]//input)[1]');
+
 
         this.randomString = `${Math.random().toString().slice(2, 5)}`;
         this.expectedUserName = `${user}${this.randomString}${'vtest'}`;
@@ -157,8 +178,9 @@ export default class AdminUsersPage {
         await this.page.getByText(userDivision, { exact: true }).click();
     }
     async addSecurityRole(securityRole: string) {
-        await this.securityRoleLocator.click();
-        await this.page.getByText(securityRole, { exact: true }).click();
+        //  await this.securityRoleLocator.click();
+        await this.securityRoleInputLocator.fill(securityRole);
+        await this.page.getByText(securityRole, { exact: true }).last().click();
     }
     async addNickName(nickName: string) {
         await this.nickNameFildLocator.fill(nickName);
@@ -175,7 +197,7 @@ export default class AdminUsersPage {
     async clickOnSaveButton() {
         await this.saveButtonLocator.click();
     }
-//------------verify user is created------------------------------------------------
+    //------------verify user is created------------------------------------------------
     async verifyConfirmationMessage(expectedMessage: string) {
         const actualMessage = await this.confirmMessage.textContent();
         expect(actualMessage?.trim()).toBe(expectedMessage);
@@ -194,13 +216,13 @@ export default class AdminUsersPage {
         await this.firstNameFilterLocator.fill(userNameFilter);
         await this.selectUserCheckboxLocator.click();
     }
-//--------------delete the user--------------------------------------------
+    //--------------delete the user--------------------------------------------
     async clickOnDeleteButton() {
         await this.deleteButtonLocator.click();
         // await this.page.waitForLoadState("load");
         // await this.deleteAlertLocator.click();
     }
-//------------verify user deleted or not------------------------------
+    //------------verify user deleted or not------------------------------
     async verifyUserCanBeDeleted() {
         expect(this.yesDeleteButton).toBeVisible();
 
@@ -216,10 +238,53 @@ export default class AdminUsersPage {
         await this.closeButtonLocator.click();
     }
 
-//-------------------------verify user is exist -------------------------------------------
+    //-------------------------verify user is exist -------------------------------------------
     async verifyIfUserCouldBeSearched(userName: string) {
         await this.userNameDropdownInputField.fill(this.expectedUserName.toLowerCase());
         expect(this.page.locator("(//div[normalize-space()='" + this.expectedUserName.toLowerCase() + "'])[1]")).toBeVisible();
+    }
+    async verifyMandatoryFeildErrorMeassage() {
+        expect(await this.firstNameMandatoryAlertLocator).toBeTruthy();
+    }
+
+    async clickOnCloseUserDetails() {
+        await this.userDetailsCloseLocator.click();
+    }
+
+    async verifyCloseTheUserDetails() {
+        expect(await this.userVerifyLocator).toBeTruthy();
+    }
+
+    async EnteruserNameDropdown(userNameDropdown: string) {
+        await this.userNameDropdownLoactor.fill(userNameDropdown);
+        await this.page.locator("(//div[normalize-space()='" + userNameDropdown + "'])[3]").click();
+    }
+
+    async verifyWelcomeMailButtonIsPresent() {
+        expect(await this.welcomeButtonLocator).toBeTruthy();
+    }
+
+    async clickOnWelcomeMailButton() {
+        await this.welcomeButtonLocator.click();
+    }
+
+    async clickOnResetpasswordButton() {
+        await this.resetPasswordLocator.click();
+    }
+
+    async verifyResetpasswordAlert() {
+        expect(this.welcomeMailConfirmMessage).toBeVisible();
+    }
+
+    async VerifyWelcomeMailConfirmMessage(alertMessage: string) {
+        expect(this.welcomeMailConfirmMessage).toBeVisible();
+        const message = await this.welcomeMailConfirmMessage.textContent();
+        expect(message).toContain(alertMessage);
+    }
+
+    async verifyCompanyRoleDropdownAppeared() {
+        expect(this.companyRoleDropdownButtonLocator).toBeVisible();
+
     }
 
 

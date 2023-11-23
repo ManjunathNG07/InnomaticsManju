@@ -1,0 +1,23 @@
+{
+    "TS01": {
+        "url": "https://uat-portal.efuelsystems.com",
+        "SuperUser": "ManjuSuperUser",
+        "Password": "DemoPass!CA1",
+        "companyCode": "TESTTEAM",
+        "userNameDropdown": "raveena@vtestcorp.com (Security Role: Admin)",
+        "expectedMessage": "Sites successfully assigned to user"
+        
+       
+    },
+    "TS03": {
+        "url": "https://uat-portal.efuelsystems.com",
+        "SuperUser": "ManjuSuperUser",
+        "Password": "DemoPass!CA1",
+        "companyCode": "TESTTEAM",
+        "userNameDropdown": "raveena@vtestcorp.com (Security Role: Admin)",
+        "expectedMessage": "Sites successfully assigned to user",
+        "expectedUnassignedMessage": "Sites successfully unassigned from user"
+       
+    }
+
+}

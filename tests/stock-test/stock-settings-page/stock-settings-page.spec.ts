@@ -11,6 +11,7 @@ test("Verify that LIU should be able to add tank attribute and checking in Tank&
 
     await login.gotoLoginPage(data.url);
     await login.loginToApp(data.SuperUser, data.companyCode, data.Password);
+    await login.clickOnAllowCookies();
     await dashBoardPage.clickOnStock();
     await dashBoardPage.clickOnStockSettings();
     await stockSettingsPage.clickOnTankAndPumpAttribute();

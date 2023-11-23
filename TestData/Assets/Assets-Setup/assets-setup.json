@@ -1,0 +1,9 @@
+{
+    "Admin7": {
+        "url": "https://uat-portal.efuelsystems.com",
+        "SuperUser": "ManjuSuperUser",
+        "Password": "DemoPass!CA1",
+        "companyCode": "TESTTEAM",
+        "assetRole": "Test"
+    }
+}
