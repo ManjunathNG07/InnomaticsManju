@@ -6,10 +6,10 @@ export default class AdminPreferencesPage {
     readonly startupDropdownLocator: Locator;
     readonly tooltipDelayLocator: Locator;
     readonly saveIconLocator: Locator;
-    verifyStartuplocator: Locator;
-    closeIconLocator: Locator;
-    userVerifyLocator: Locator;
-    preferenceTabLocator: Locator;
+   readonly verifyStartuplocator: Locator;
+  readonly  closeIconLocator: Locator;
+  readonly  userVerifyLocator: Locator;
+   readonly preferenceTabLocator: Locator;
 
 
 

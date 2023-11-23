@@ -5,13 +5,13 @@ export default class AdminSitePage {
     readonly firstNameSearchLoactor: Locator;
     readonly siteTabLocator: Locator;
     readonly AllSitesRadioButton: Locator;
-    siteCheckBoxLocator: Locator;
-    toButtonLocator: Locator;
-    successfulMessage: Locator;
-    usersSitesCheckbox: Locator;
-    froButtonLocator: Locator;
-    unAssignedSuccefulMessage: Locator;
-    availableSitesNameValue: Locator;
+    readonly siteCheckBoxLocator: Locator;
+    readonly toButtonLocator: Locator;
+    readonly successfulMessage: Locator;
+    readonly usersSitesCheckbox: Locator;
+    readonly froButtonLocator: Locator;
+    readonly unAssignedSuccefulMessage: Locator;
+    readonly availableSitesNameValue: Locator;
 
 
 
@@ -23,13 +23,13 @@ export default class AdminSitePage {
 
         this.siteTabLocator = page.locator('[data-test-id="UserManagement1232"]');
         this.AllSitesRadioButton = page.locator('(//div[@class="form-check-radio form-group-no-bottom-margin margin-left-15"])[2]');
-        this.siteCheckBoxLocator=page.locator('(//td[@data-test-id="UserManagementUserManagementSites37SitesFilterGridSelectionCellSelectionCell"])[1]');
-        this.toButtonLocator=page.locator('[data-test-id="UserManagementUserManagementSites37Right"]');
-        this.froButtonLocator=page.locator('[data-test-id="UserManagementUserManagementSites37Left"]');
-        this.successfulMessage=page.locator('//p[text()="Sites successfully assigned to user"]');
-        this.usersSitesCheckbox=page.locator('(//td[@data-test-id="UserManagementUserManagementSites37CompanyUserSitesGridSelectionCellSelectionCell"]//input)[1]');
-        this.unAssignedSuccefulMessage=page.locator(' //p[text()="Sites successfully unassigned from user"]');
-        this.availableSitesNameValue=page.locator('(//input[@data-test-id="UserManagementUserManagementSites37SitesFilterGridName"])[1]');
+        this.siteCheckBoxLocator = page.locator('(//td[@data-test-id="UserManagementUserManagementSites37SitesFilterGridSelectionCellSelectionCell"])[1]');
+        this.toButtonLocator = page.locator('[data-test-id="UserManagementUserManagementSites37Right"]');
+        this.froButtonLocator = page.locator('[data-test-id="UserManagementUserManagementSites37Left"]');
+        this.successfulMessage = page.locator('//p[text()="Sites successfully assigned to user"]');
+        this.usersSitesCheckbox = page.locator('(//td[@data-test-id="UserManagementUserManagementSites37CompanyUserSitesGridSelectionCellSelectionCell"]//input)[1]');
+        this.unAssignedSuccefulMessage = page.locator(' //p[text()="Sites successfully unassigned from user"]');
+        this.availableSitesNameValue = page.locator('(//input[@data-test-id="UserManagementUserManagementSites37SitesFilterGridName"])[1]');
 
 
     }
@@ -37,22 +37,22 @@ export default class AdminSitePage {
         await this.siteTabLocator.click();
     }
 
-    async clickOnAllSitesRadioButton(){    
+    async clickOnAllSitesRadioButton() {
         await this.AllSitesRadioButton.click();
     }
 
-    async clickOnAvailableSiteCheckBox(){    
+    async clickOnAvailableSiteCheckBox() {
         await this.siteCheckBoxLocator.click();
     }
 
-    async clickOnUsersSiteCheckBox(){    
+    async clickOnUsersSiteCheckBox() {
         await this.usersSitesCheckbox.click();
     }
-    async clickOnToButton(){
+    async clickOnToButton() {
         await this.toButtonLocator.click();
         await this.page.waitForTimeout(4000);
     }
-    async clickOnFroButton(){
+    async clickOnFroButton() {
         await this.froButtonLocator.click();
         await this.page.waitForTimeout(4000);
     }
@@ -61,7 +61,7 @@ export default class AdminSitePage {
         await this.page.locator("(//div[normalize-space()='" + userNameDropdown + "'])[3]").click();
     }
 
-    async verifyAssignSuccessMessage(expectedMessage: string){
+    async verifyAssignSuccessMessage(expectedMessage: string) {
         const actualMessage = await this.successfulMessage.textContent();
         expect(actualMessage).toBe(expectedMessage);
     }
@@ -71,7 +71,7 @@ export default class AdminSitePage {
         expect(actualMessage).toBe(expectedUnassignedMessage);
     }
 
-    async verifySiteIsAddedInManagerSites(){
-       await expect(this.availableSitesNameValue.textContent()).toBeTruthy();
+    async verifySiteIsAddedInManagerSites() {
+        await expect(this.availableSitesNameValue.textContent()).toBeTruthy();
     }
 }
