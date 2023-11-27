@@ -16,6 +16,7 @@ export default class DashboardPage {
     maplocator: Locator;
     availabilityLocator: Locator;
     managedUserLocator: Locator;
+    sitesButtonLocator: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -23,6 +24,8 @@ export default class DashboardPage {
         this.adminLocator = page.locator("//p[.='Admin']");
         //users
         this.usersButtonLocator = page.locator("//span[.='Users']");
+        //site
+        this.sitesButtonLocator = page.locator("//span[.='Sites']");
         //company Settings
         this.companySettingsButtonLocator = page.locator("//span[.='Company Settings']");
         //stock
@@ -57,6 +60,11 @@ export default class DashboardPage {
     async clickOnUsers() {
         await this.page.waitForLoadState("load");
         await this.usersButtonLocator.click();
+    }
+    //-----------sites--------------------
+    async clickOnSites() {
+        await this.page.waitForLoadState("load");
+        await this.sitesButtonLocator.click();
     }
     //-----stock-----------------------------------------------
     async clickOnStock() {

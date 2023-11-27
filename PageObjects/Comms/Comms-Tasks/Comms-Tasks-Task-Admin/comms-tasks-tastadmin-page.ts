@@ -26,7 +26,7 @@ export default class CommsTaskAdminPage {
         this.commsTaskLocator = page.locator('[data-test-id="TaskAdminTaskTypeBtnCommsTask"]');
         this.taskNameLocator = page.locator('//div[@data-test-id="TaskAdminAddEditTaskTaskDetailsTabTaskDetailsFormTaskName"]//input');
         this.urgencyDropDownLocator = page.locator('(//div[@data-test-id="TaskAdminAddEditTaskTaskDetailsTabTaskDetailsFormUrgencyId"]//input)[1]');
-        this.fromDropDownLocator = page.locator('(//div[@data-test-id="TaskAdminAddEditTaskTaskDetailsTabTaskDetailsFormExistingFormId"]//input)[1]');
+        this.fromDropDownLocator = page.locator('(//div[@data-test-id="TaskAdminAddEditTaskTaskDetailsTabTaskDetailsFormExistingFormId"]//input)[2]');
         this.nextButton1Locator = page.locator('//button[@title="Next"]');
         this.dueTimeLocator = page.locator('(//div[@data-test-id="TaskAdminAddEditTaskTaskDetailsTabTaskDetailsFormDueTime"]//input)[1]');
         this.siteNameLocator = page.locator('(//div[@data-test-id="TaskAdminAddEditTaskTaskRecipientsTabCommsRecepientFormRecipientsFiltersSiteName"]//input)[1]');
@@ -116,7 +116,7 @@ export default class CommsTaskAdminPage {
 
     async selectForm(from: string) {
         await this.fromDropDownLocator.fill(from);
-        await this.page.locator('//div[contains(text(),"' + from + '")]').first().click();
+        await this.page.locator('//div[contains(text(),"' + from + '")]').last().click();
     }
 
     async clickOnNextButton1() {

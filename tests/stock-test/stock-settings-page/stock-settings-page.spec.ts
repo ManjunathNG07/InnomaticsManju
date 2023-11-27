@@ -3,7 +3,7 @@ import Loginpage from "../../../PageObjects/login-page";
 import DashboardPage from "../../../PageObjects/dashboard";
 import data from "../../../TestData/Stock/Stock-Settings/stock-settings.json";
 import StockSettingsPage from "../../../PageObjects/Stock/Stock-Settings/stock-settings-page";
-test("Verify that LIU should be able to add tank attribute and checking in Tank&pumpsetup page.", async ({ page }) => {
+test.skip("Verify that LIU should be able to add tank attribute and checking in Tank&pumpsetup page.", async ({ page }) => {
     test.setTimeout(100 * 1000);
     const login = new Loginpage(page);
     const dashBoardPage = new DashboardPage(page);

@@ -115,7 +115,7 @@ export default class AdminUsersPage {
 
     async addPasswordType(passwordType: string) {
         await this.passwordTypeLocator.click();
-        await this.page.getByText(passwordType, { exact: true }).click();
+        await this.page.getByText(passwordType, { exact: true }).last().click();
 
     }
 
@@ -145,7 +145,7 @@ export default class AdminUsersPage {
     }
     async addCountry(country: string) {
         await this.countryDropdownLocator.click();
-        await this.page.getByText(country, { exact: true }).click();
+        await this.page.getByText(country, { exact: true }).last().click();
     }
     async addPostcode(postcode: string) {
         await this.postcodeLocator.fill(postcode);
@@ -155,27 +155,27 @@ export default class AdminUsersPage {
     }
     async addState(state: string) {
         await this.stateDropdownLocator.click();
-        await this.page.getByText(state, { exact: true }).click();
+        await this.page.getByText(state, { exact: true }).last().click();
     }
     async addTimeZone(timeZone: string) {
         await this.timeZoneDropdownLocator.click();
-        await this.page.getByText(timeZone, { exact: true }).click();
+        await this.page.getByText(timeZone, { exact: true }).last().click();
     }
     async addUserRegion(userRegion: string) {
         await this.userRegionDropdownLocator.click();
-        await this.page.getByText(userRegion, { exact: true }).click();
+        await this.page.getByText(userRegion, { exact: true }).last().click();
     }
     async addGender(gender: string) {
         await this.genderDropdown.click();
-        await this.page.getByText(gender, { exact: true }).click();
+        await this.page.getByText(gender, { exact: true }).last().click();
     }
     async addAsset(asset: string) {
         await this.assestFieldLocator.click();
-        await this.page.getByText(asset, { exact: true }).click();
+        await this.page.getByText(asset, { exact: true }).last().click();
     }
     async addUserDivision(userDivision: string) {
         await this.userDivisionDropdown.click();
-        await this.page.getByText(userDivision, { exact: true }).click();
+        await this.page.getByText(userDivision, { exact: true }).last().click();
     }
     async addSecurityRole(securityRole: string) {
         //  await this.securityRoleLocator.click();
@@ -192,7 +192,7 @@ export default class AdminUsersPage {
     }
     async addCompanyRole(companyRole: string) {
         await this.companyRoleLocator.click();
-        await this.page.getByText(companyRole, { exact: true }).click();
+        await this.page.getByText(companyRole, { exact: true }).last().click();
     }
     async clickOnSaveButton() {
         await this.saveButtonLocator.click();

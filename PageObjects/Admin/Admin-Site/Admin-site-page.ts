@@ -14,6 +14,12 @@ export default class AdminSitePage {
     readonly availableSitesNameValue: Locator;
 
 
+    readonly siteAddButtonLocator: Locator;
+    readonly siteCloseButtonLocator: Locator;
+    readonly siteNameDropdownLocator: Locator;
+    readonly contactTabLocator: Locator;
+
+
 
 
 
@@ -31,8 +37,36 @@ export default class AdminSitePage {
         this.unAssignedSuccefulMessage = page.locator(' //p[text()="Sites successfully unassigned from user"]');
         this.availableSitesNameValue = page.locator('(//input[@data-test-id="UserManagementUserManagementSites37SitesFilterGridName"])[1]');
 
+        //---------------------------------------
+      
+
+
+
 
     }
+    //---------------------------  
+    async clickOnAddSiteIcon() {
+        await this.page.waitForLoadState('load');
+        await this.siteAddButtonLocator.click();
+    }
+
+    async clickOnCloseSiteIcon() {
+        await this.page.waitForLoadState('load');
+        await this.siteCloseButtonLocator.click();
+    }
+
+    async selectSiteName(siteName: string) {
+        await this.siteNameDropdownLocator.fill(siteName);
+        await this.page.locator('//div[contains(text(),"' + siteName + '")]').first().click();
+
+    }
+
+    async clickOnContactTab() {
+        await this.contactTabLocator.click();
+    }
+
+
+    //----------------------------
     async clickOnSiteTab() {
         await this.siteTabLocator.click();
     }

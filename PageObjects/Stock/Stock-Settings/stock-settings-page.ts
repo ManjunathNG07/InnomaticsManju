@@ -14,7 +14,7 @@ export default class StockSettingsPage {
     readonly verifyLocator: string;
     readonly siteNameDropdownLocator: Locator;
     readonly editTankAttributeLocator: Locator;
-   readonly inputSelector2: Locator;
+    readonly inputSelector2: Locator;
 
 
 
@@ -70,7 +70,7 @@ export default class StockSettingsPage {
         }
     }
     //-------------------------------------
-    async enterLastTankAttribute(tankAttribute:string){
+    async enterLastTankAttribute(tankAttribute: string) {
         await this.inputSelector2.fill(this.expectedTankAttribute);
     }
 
@@ -91,7 +91,7 @@ export default class StockSettingsPage {
     async enterSiteName(siteName: string) {
         await this.siteNameDropdownLocator.fill(siteName);
         await this.page.locator('//div[contains(text(),"' + siteName + '")]').first().click();
-       
+
     }
 
     async clickOnEditTankAndPumpSetup() {

@@ -1,0 +1,18 @@
+{
+    "TS01": {
+        "url": "https://uat-portal.efuelsystems.com",
+        "SuperUser": "ManjuSuperUser",
+        "Password": "DemoPass!CA1",
+        "companyCode": "TESTTEAM",
+        "siteName":"MySite"
+    },
+    "TS08": {
+        "url": "https://uat-portal.efuelsystems.com",
+        "SuperUser": "ManjuSuperUser",
+        "Password": "DemoPass!CA1",
+        "companyCode": "TESTTEAM",
+        "siteName":"MySite",
+        "contact":"AutoTest"
+    }
+
+}

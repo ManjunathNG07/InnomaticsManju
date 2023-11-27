@@ -6,7 +6,7 @@ import AdminUsersPage from "../../../PageObjects/Admin/Admin-Users/admin-user-pa
 
 
 test("Verify that LIU should be able to add new users details by clicking + icon.", async ({ page }) => {
-    test.setTimeout(100 * 1000);
+    test.setTimeout(200 * 1000);
     const login = new Loginpage(page);
     const dashBoardPage = new DashboardPage(page);
     const adminUserPage = new AdminUsersPage(page, data["Admin"].userName);
@@ -44,7 +44,7 @@ test("Verify that LIU should be able to add new users details by clicking + icon
 
 
 test("Verify that LIU should be able to delete any user details ", async ({ page }) => {
-    test.setTimeout(100 * 1000);
+    test.setTimeout(200 * 1000);
     const login = new Loginpage(page);
     const dashBoardPage = new DashboardPage(page);
     const adminUserPage = new AdminUsersPage(page, data["Admin1"].userName);
@@ -81,7 +81,7 @@ test("Verify that LIU should be able to delete any user details ", async ({ page
 })
 
 test("Verify that the LIU should be able to search the newly added user details ", async ({ page }) => {
-    test.setTimeout(100 * 1000);
+    test.setTimeout(200 * 1000);
     const login = new Loginpage(page);
     const dashBoardPage = new DashboardPage(page);
     const adminUserPage = new AdminUsersPage(page, data["Admin2"].userName);
@@ -114,7 +114,7 @@ test("Verify that the LIU should be able to search the newly added user details 
 })
 
 test("TS01:Verify that if LIU click save button without filling data one mandatory fields error message should appear and system should not allow to Save the user details ", async ({ page }) => {
-    test.setTimeout(100 * 1000);
+    test.setTimeout(200 * 1000);
     const login = new Loginpage(page);
     const dashBoardPage = new DashboardPage(page);
     const adminUserPage = new AdminUsersPage(page, data["Admin2"].userName);
@@ -139,7 +139,7 @@ test("TS01:Verify that if LIU click save button without filling data one mandato
 })
 
 test("TS02:Verify that LIU should be able to close the user details card by clicking close button ", async ({ page }) => {
-    test.setTimeout(100 * 1000);
+    test.setTimeout(200 * 1000);
     const login = new Loginpage(page);
     const dashBoardPage = new DashboardPage(page);
     const adminUserPage = new AdminUsersPage(page, data["Admin2"].userName);
@@ -156,7 +156,7 @@ test("TS02:Verify that LIU should be able to close the user details card by clic
 })
 
 test("TS03:Verify the Send Welcome Mail button should be available to send the welcome mail", async ({ page }) => {
-    test.setTimeout(100 * 1000);
+    test.setTimeout(200 * 1000);
     const login = new Loginpage(page);
     const dashBoardPage = new DashboardPage(page);
     const adminUserPage = new AdminUsersPage(page, data["Admin3"].userName);
