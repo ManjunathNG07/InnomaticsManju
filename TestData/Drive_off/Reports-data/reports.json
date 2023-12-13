@@ -1,0 +1,16 @@
+{
+    "Drive_001": {
+        "url": "https://uat-portal.efuelsystems.com",
+        "SuperUser": "ManjuSuperUser",
+        "Password": "DemoPass!CA1",
+        "companyCode": "TESTTEAM",
+        "siteName": "MySite",
+        "rego": "abc",
+        "siteNo": "SITE1",
+        "monthYear": "November 2023",
+        "date": "24",
+        "month": "10",
+        "monthss": "Nov",
+        "year": "2023"
+    }
+}

@@ -17,6 +17,10 @@ export default class DashboardPage {
     availabilityLocator: Locator;
     managedUserLocator: Locator;
     sitesButtonLocator: Locator;
+    driveOffLocator: Locator;
+    driveOffLandingLocator: Locator;
+    reportsLandingLocator: Locator;
+    settingsLandingLocator: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -45,6 +49,17 @@ export default class DashboardPage {
         this.availabilityLocator=page.locator("(//div[.='Availability'])[2]");
         //managed user
         this.managedUserLocator=page.locator("(//div[.='ManagedUsers'])[2]");
+        //Drive_Off
+        this.driveOffLocator = page.locator("//p[.='Drive Off']");
+        //drive_off page
+        this.driveOffLandingLocator = page.locator("//span[.='Drive Off']");
+        //drive_off reports page
+        this.reportsLandingLocator = page.locator("//span[.='Reports']").last();
+        //drive_off settings page
+        this.settingsLandingLocator = page.locator("//span[.='Settings']").last();
+    
+
+
         
 
         
@@ -114,6 +129,26 @@ export default class DashboardPage {
     async clickOnManagedUser() {
         await this.page.waitForLoadState("load");
         await this.managedUserLocator.click();
+    }
+    //--------------Drive_off-----------------------
+    async clickOnDriveOff() {
+        await this.page.waitForLoadState("load");
+        await this.driveOffLocator.click();
+    }
+
+    async clickOnDriveOffPage() {
+        await this.page.waitForLoadState("load");
+        await this.driveOffLandingLocator.click();
+    }
+    //-----------drive_off-reports------------
+    async clickOnDriveOffReportsPage() {
+        await this.page.waitForLoadState("load");
+        await this.reportsLandingLocator.click();
+    }
+    //--------drive_off-settings---------------
+    async clickOnDriveOffSettingsPage() {
+        await this.page.waitForLoadState("load");
+        await this.settingsLandingLocator.click();
     }
 
 }
